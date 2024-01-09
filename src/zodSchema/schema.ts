@@ -1,3 +1,4 @@
+import { MqttClient } from "mqtt/*";
 import * as z from "zod";
 
 interface configuration {
@@ -36,6 +37,17 @@ const ConfigurationSchema = z.object({
     topic: z.string().min(1),
   }),
 });
+interface connectedClientInterface {
+  type: string;
+  mqttBroker: string;
+}
 
 // module.exports =  ConfigurationSchema ;
-export { ConfigurationSchema, configuration , configurationId , SourceData, DestinationData};
+export {
+  ConfigurationSchema,
+  configuration,
+  configurationId,
+  SourceData,
+  DestinationData,
+  connectedClientInterface,
+};

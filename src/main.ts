@@ -11,7 +11,7 @@ import {
   GetConfiguration,
   createConfiguration,
 } from "./database/db";
-import { handelConfiguration } from "./Connections/index";
+import { getConnectedClients, handelConfiguration } from "./Connections/index";
 
 app.post("/configuration", (req, res) => {
   console.log("getting new configuration");
@@ -47,6 +47,15 @@ app.get("/configuration", (req, res) => {
     GetConfiguration().then((configs: any) => {
       res.send(configs);
     });
+  } catch (error: any) {
+    res.send(error.message);
+  }
+});
+app.get("/status", (req, res) => {
+  console.log("get the status");
+  try {
+    const connectedClients = getConnectedClients();
+    res.send(connectedClients);
   } catch (error: any) {
     res.send(error.message);
   }

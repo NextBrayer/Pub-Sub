@@ -6,8 +6,10 @@ async function handelSourceMqtt(id: number, configuration: SourceData) {
   if (connectedClient !== null) {
     console.log("Successfully connected!");
     subscribeToMqtt(connectedClient, configuration.topic, id);
+    return connectedClient
   } else {
     console.log("Failed to connect to MQTT.");
+    return null
   }
 }
 

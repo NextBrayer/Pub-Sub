@@ -8,8 +8,10 @@ async function handelDestinationMqtt(id: number, configuration: DestinationData)
   if (connectedClient !== null) {
     console.log("Successfully connected!");
     publishToMqtt(connectedClient, configuration.topic, id);
+    return connectedClient
   } else {
     console.log("Failed to connect to MQTT.");
+    return null
   }
 }
 
