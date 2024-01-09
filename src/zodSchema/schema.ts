@@ -38,4 +38,4 @@ const ConfigurationSchema = z.object({
 });
 
 // module.exports =  ConfigurationSchema ;
-export { ConfigurationSchema, configuration , configurationId};
+export { ConfigurationSchema, configuration , configurationId , SourceData, DestinationData};
