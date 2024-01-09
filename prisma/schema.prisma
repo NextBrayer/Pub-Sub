@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model configuration {
+  id              Int              @id @default(autoincrement())
+  SourceType      String
+  SourceData      SourceData?
+  DestinationType String
+  DestinationData DestinationData?
+}
+
+model SourceData {
+  url   String
+  topic String
+  port  Int
+
+  SourceDataId  Int           @unique
+  configuration configuration @relation(fields: [SourceDataId], references: [id])
+}
+
+model DestinationData {
+  url   String
+  topic String
+  port  Int
+
+  DestinationDataId Int           @unique
+  configuration     configuration @relation(fields: [DestinationDataId], references: [id])
+}
